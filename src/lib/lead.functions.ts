@@ -9,6 +9,10 @@ export const leadSchema = z.object({
   course: z.string().trim().max(100).optional().default(""),
   comment: z.string().trim().max(1000).optional().default(""),
   source: z.string().trim().max(50).optional().default(""),
+  a: z.number().int().min(1).max(20),
+  b: z.number().int().min(1).max(20),
+  answer: z.number().int(),
+  website: z.string().max(0, "spam").optional().default(""),
 });
 
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -16,6 +20,7 @@ const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 export const sendLead = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) => leadSchema.parse(d))
   .handler(async ({ data }) => {
+    if (data.a + data.b !== data.answer) throw new Error("Неверный ответ капчи");
     const token = process.env["TELEGRAM_BOT_TOKEN"];
     if (!token) throw new Error("Бот не настроен");
     const text = [
