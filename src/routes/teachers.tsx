@@ -6,7 +6,7 @@ export const Route = createFileRoute("/teachers")({
   component: Teachers,
 });
 
-const team = [
+const team: [string, string, string][] = [
   ["Елена Смирнова", "Методист, DELTA", "15 лет опыта · Business English"],
   ["James Carter", "Носитель, Великобритания", "CELTA · Разговорные клубы"],
   ["Мария Волкова", "IELTS-эксперт", "Личный балл IELTS 8.5"],
