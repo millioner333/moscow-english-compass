@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { Menu, X, Phone, MapPin, Mail, Send } from "lucide-react";
 import { sendLead } from "@/lib/lead.functions";
@@ -82,6 +82,9 @@ export function LeadForm({ source, defaultCourse = "" }: { source: string; defau
   const send = useServerFn(sendLead);
   const [state, setState] = useState<"idle" | "loading" | "ok" | "error">("idle");
   const [error, setError] = useState("");
+  const [cap, setCap] = useState({ a: 3, b: 4 });
+  const newCap = () => setCap({ a: 1 + Math.floor(Math.random() * 9), b: 1 + Math.floor(Math.random() * 9) });
+  useEffect(newCap, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -90,12 +93,15 @@ export function LeadForm({ source, defaultCourse = "" }: { source: string; defau
     const phone = String(f.get("phone") || "").trim();
     if (name.length < 2) return setError("Укажите имя"), setState("error");
     if (!/^[0-9+()\-\s]{6,30}$/.test(phone)) return setError("Укажите корректный телефон"), setState("error");
+    const answer = Number(String(f.get("captcha") || "").trim());
+    if (answer !== cap.a + cap.b) { newCap(); return setError("Неверный ответ на пример"), setState("error"); }
     setState("loading");
     try {
-      await send({ data: { name, phone, course: String(f.get("course") || ""), comment: String(f.get("comment") || ""), source } });
+      await send({ data: { name, phone, course: String(f.get("course") || ""), comment: String(f.get("comment") || ""), source, a: cap.a, b: cap.b, answer, website: String(f.get("website") || "") } });
       setState("ok");
       e.currentTarget?.reset?.();
     } catch {
+      newCap();
       setError("Не удалось отправить. Позвоните нам: +7 (495) 123-45-67");
       setState("error");
     }
@@ -120,6 +126,11 @@ export function LeadForm({ source, defaultCourse = "" }: { source: string; defau
         {courseOptions.map((c) => <option key={c}>{c}</option>)}
       </select>
       <textarea name="comment" placeholder="Комментарий (необязательно)" rows={3} maxLength={1000} className="field" />
+      <label className="flex items-center gap-3">
+        <span className="shrink-0 font-semibold">Сколько будет {cap.a} + {cap.b}?</span>
+        <input name="captcha" inputMode="numeric" maxLength={3} placeholder="Ответ" className="field" />
+      </label>
+      <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
       {state === "error" && <p className="text-sm text-destructive">{error}</p>}
       <button disabled={state === "loading"} className="btn-accent w-full disabled:opacity-60">
         <Send size={18} /> {state === "loading" ? "Отправляем…" : "Отправить заявку"}
