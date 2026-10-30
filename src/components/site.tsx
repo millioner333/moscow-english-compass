@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { Menu, X, Phone, MapPin, Mail, Send } from "lucide-react";
+import { Menu, X, Phone, MapPin, Mail, Send, Lock } from "lucide-react";
 import { sendLead } from "@/lib/lead.functions";
 
 export const nav = [
@@ -23,12 +23,15 @@ export function Header() {
           <span className="grid h-10 w-10 place-items-center rounded-full bg-primary font-display text-lg font-bold text-primary-foreground">B</span>
           <span className="font-display text-xl font-semibold">Bridge<span className="text-accent">.</span>English</span>
         </Link>
-        <nav className="hidden gap-6 lg:flex">
+        <nav className="hidden items-center gap-6 lg:flex">
           {nav.map((n) => (
             <Link key={n.to} to={n.to} activeOptions={{ exact: true }} className="text-sm font-semibold text-muted-foreground hover:text-foreground" activeProps={{ className: "text-accent" }}>
               {n.label}
             </Link>
           ))}
+          <Link to="/admin" className="flex items-center gap-1.5 rounded-full border border-border/70 px-3 py-1.5 text-sm font-semibold text-muted-foreground hover:border-accent/50 hover:text-accent" activeProps={{ className: "border-accent text-accent" }}>
+            <Lock size={13} /> Админка
+          </Link>
         </nav>
         <Link to="/contacts" className="btn-accent hidden !py-2.5 text-sm lg:inline-flex">Пробный урок</Link>
         <button aria-label="Меню" className="lg:hidden" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
