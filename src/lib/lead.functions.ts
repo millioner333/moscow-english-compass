@@ -23,6 +23,15 @@ export const sendLead = createServerFn({ method: "POST" })
     if (data.a + data.b !== data.answer) throw new Error("Неверный ответ капчи");
     const token = process.env["TELEGRAM_BOT_TOKEN"];
     if (!token) throw new Error("Бот не настроен");
+    try {
+      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+      const { error } = await supabaseAdmin.from("leads").insert({
+        name: data.name, phone: data.phone, course: data.course, comment: data.comment, source: data.source,
+      });
+      if (error) console.error("Lead save error", error);
+    } catch (e) {
+      console.error("Lead save error", e);
+    }
     const text = [
       "<b>📩 Новая заявка с сайта</b>",
       `<b>Имя:</b> ${esc(data.name)}`,
