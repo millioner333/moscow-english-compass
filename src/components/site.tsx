@@ -41,6 +41,9 @@ export function Header() {
           {nav.map((n) => (
             <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="font-semibold">{n.label}</Link>
           ))}
+          <Link to="/admin" onClick={() => setOpen(false)} className="flex items-center gap-2 font-semibold text-muted-foreground">
+            <Lock size={14} /> Админка
+          </Link>
         </nav>
       )}
     </header>
