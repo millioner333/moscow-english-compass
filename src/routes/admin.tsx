@@ -71,11 +71,14 @@ function Login() {
 function Leads({ userId, email }: { userId: string; email: string }) {
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [leads, setLeads] = useState<Lead[]>([]);
+  const [payments, setPayments] = useState<{ id: string; created_at: string; plan: string; withdraw_amount: number; expected_amount: number; status: string; email: string; operation_id: string }[]>([]);
   const [filter, setFilter] = useState<"all" | "new" | "done">("all");
 
   async function load() {
     const { data } = await supabase.from("leads").select("*").order("created_at", { ascending: false });
     setLeads((data as Lead[]) ?? []);
+    const { data: pays } = await supabase.from("payments").select("*").order("created_at", { ascending: false });
+    setPayments(pays ?? []);
   }
   useEffect(() => {
     supabase.rpc("has_role", { _user_id: userId, _role: "admin" }).then(({ data }) => {
@@ -141,6 +144,27 @@ function Leads({ userId, email }: { userId: string; email: string }) {
               </tr>
             ))}
             {shown.length === 0 && <tr><td colSpan={8} className="p-8 text-center text-muted-foreground">Заявок пока нет</td></tr>}
+          </tbody>
+        </table>
+      </div>
+      <h2 className="mt-14 text-3xl font-semibold">Оплаты ЮMoney</h2>
+      <div className="mt-6 overflow-x-auto rounded-2xl bg-card shadow-card">
+        <table className="w-full text-left text-sm">
+          <thead className="border-b text-muted-foreground">
+            <tr>{["Дата", "Тариф", "Сумма", "Email", "Статус", "Операция"].map((h) => <th key={h} className="p-4 font-semibold">{h}</th>)}</tr>
+          </thead>
+          <tbody>
+            {payments.map((p) => (
+              <tr key={p.id} className="border-b last:border-0">
+                <td className="whitespace-nowrap p-4">{new Date(p.created_at).toLocaleString("ru-RU", { dateStyle: "short", timeStyle: "short" })}</td>
+                <td className="p-4 font-semibold">{p.plan}</td>
+                <td className="p-4">{p.withdraw_amount} ₽</td>
+                <td className="p-4">{p.email || "—"}</td>
+                <td className="p-4"><span className={`rounded-full px-3 py-1 text-xs font-bold ${p.status === "paid" ? "bg-secondary" : "bg-destructive text-destructive-foreground"}`}>{p.status === "paid" ? "Оплачено" : `Неверная сумма (нужно ${p.expected_amount} ₽)`}</span></td>
+                <td className="p-4 text-muted-foreground">{p.operation_id}</td>
+              </tr>
+            ))}
+            {payments.length === 0 && <tr><td colSpan={6} className="p-8 text-center text-muted-foreground">Оплат пока нет</td></tr>}
           </tbody>
         </table>
       </div>
