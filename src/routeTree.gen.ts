@@ -15,8 +15,10 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as ContactsRouteImport } from './routes/contacts'
 import { Route as CoursesRouteImport } from './routes/courses'
+import { Route as PaymentSuccessRouteImport } from './routes/payment-success'
 import { Route as PricesRouteImport } from './routes/prices'
 import { Route as TeachersRouteImport } from './routes/teachers'
+import { Route as ApiPublicYoomoneyRouteImport } from './routes/api/public/yoomoney'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -48,6 +50,11 @@ const CoursesRoute = CoursesRouteImport.update({
   path: '/courses',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PaymentSuccessRoute = PaymentSuccessRouteImport.update({
+  id: '/payment-success',
+  path: '/payment-success',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PricesRoute = PricesRouteImport.update({
   id: '/prices',
   path: '/prices',
@@ -58,6 +65,11 @@ const TeachersRoute = TeachersRouteImport.update({
   path: '/teachers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicYoomoneyRoute = ApiPublicYoomoneyRouteImport.update({
+  id: '/api/public/yoomoney',
+  path: '/api/public/yoomoney',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -66,8 +78,10 @@ export interface FileRoutesByFullPath {
   '/careers': typeof CareersRoute
   '/contacts': typeof ContactsRoute
   '/courses': typeof CoursesRoute
+  '/payment-success': typeof PaymentSuccessRoute
   '/prices': typeof PricesRoute
   '/teachers': typeof TeachersRoute
+  '/api/public/yoomoney': typeof ApiPublicYoomoneyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -76,8 +90,10 @@ export interface FileRoutesByTo {
   '/careers': typeof CareersRoute
   '/contacts': typeof ContactsRoute
   '/courses': typeof CoursesRoute
+  '/payment-success': typeof PaymentSuccessRoute
   '/prices': typeof PricesRoute
   '/teachers': typeof TeachersRoute
+  '/api/public/yoomoney': typeof ApiPublicYoomoneyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -87,8 +103,10 @@ export interface FileRoutesById {
   '/careers': typeof CareersRoute
   '/contacts': typeof ContactsRoute
   '/courses': typeof CoursesRoute
+  '/payment-success': typeof PaymentSuccessRoute
   '/prices': typeof PricesRoute
   '/teachers': typeof TeachersRoute
+  '/api/public/yoomoney': typeof ApiPublicYoomoneyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -99,8 +117,10 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contacts'
     | '/courses'
+    | '/payment-success'
     | '/prices'
     | '/teachers'
+    | '/api/public/yoomoney'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -109,8 +129,10 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contacts'
     | '/courses'
+    | '/payment-success'
     | '/prices'
     | '/teachers'
+    | '/api/public/yoomoney'
   id:
     | '__root__'
     | '/'
@@ -119,8 +141,10 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contacts'
     | '/courses'
+    | '/payment-success'
     | '/prices'
     | '/teachers'
+    | '/api/public/yoomoney'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -130,8 +154,10 @@ export interface RootRouteChildren {
   CareersRoute: typeof CareersRoute
   ContactsRoute: typeof ContactsRoute
   CoursesRoute: typeof CoursesRoute
+  PaymentSuccessRoute: typeof PaymentSuccessRoute
   PricesRoute: typeof PricesRoute
   TeachersRoute: typeof TeachersRoute
+  ApiPublicYoomoneyRoute: typeof ApiPublicYoomoneyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -178,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CoursesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/payment-success': {
+      id: '/payment-success'
+      path: '/payment-success'
+      fullPath: '/payment-success'
+      preLoaderRoute: typeof PaymentSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/prices': {
       id: '/prices'
       path: '/prices'
@@ -192,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeachersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/yoomoney': {
+      id: '/api/public/yoomoney'
+      path: '/api/public/yoomoney'
+      fullPath: '/api/public/yoomoney'
+      preLoaderRoute: typeof ApiPublicYoomoneyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -202,8 +242,10 @@ const rootRouteChildren: RootRouteChildren = {
   CareersRoute: CareersRoute,
   ContactsRoute: ContactsRoute,
   CoursesRoute: CoursesRoute,
+  PaymentSuccessRoute: PaymentSuccessRoute,
   PricesRoute: PricesRoute,
   TeachersRoute: TeachersRoute,
+  ApiPublicYoomoneyRoute: ApiPublicYoomoneyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
