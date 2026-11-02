@@ -47,6 +47,51 @@ export type Database = {
         }
         Relationships: []
       }
+      payments: {
+        Row: {
+          amount: number
+          created_at: string
+          email: string
+          expected_amount: number
+          id: string
+          label: string
+          operation_id: string
+          paid_at: string
+          plan: string
+          sender: string
+          status: string
+          withdraw_amount: number
+        }
+        Insert: {
+          amount?: number
+          created_at?: string
+          email?: string
+          expected_amount?: number
+          id?: string
+          label?: string
+          operation_id: string
+          paid_at?: string
+          plan?: string
+          sender?: string
+          status?: string
+          withdraw_amount?: number
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          email?: string
+          expected_amount?: number
+          id?: string
+          label?: string
+          operation_id?: string
+          paid_at?: string
+          plan?: string
+          sender?: string
+          status?: string
+          withdraw_amount?: number
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
