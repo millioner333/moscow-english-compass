@@ -89,6 +89,7 @@ export function Footer() {
           <p className="flex gap-2"><MapPin size={16} /> {t("Москва, ул. Тверская, 12, офис 305", "Moscow, 12 Tverskaya St., office 305")}</p>
           <p className="flex gap-2"><Phone size={16} /> +7 (495) 123-45-67</p>
           <p className="flex gap-2"><Mail size={16} /> hello@bridge-english.ru</p>
+          <a href="https://npd.nalog.ru/check-status/" target="_blank" rel="noopener noreferrer" className="block underline underline-offset-4 opacity-80 hover:opacity-100">{t("Самозанятый, ИНН", "Self-employed, TIN")} 026206690993</a>
         </div>
       </div>
       <p className="border-t border-primary-foreground/15 py-5 text-center text-xs opacity-60">© 2026 Bridge English. {t("Все права защищены.", "All rights reserved.")}</p>
