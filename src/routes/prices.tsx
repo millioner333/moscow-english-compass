@@ -32,10 +32,10 @@ function Prices() {
         {plans.map((pl) => (
           <div key={pl.t[0]} className={`flex flex-col rounded-2xl p-8 ${pl.hot ? "bg-primary text-primary-foreground shadow-card md:-translate-y-4" : "border bg-card"}`}>
             {pl.hot && <span className="mb-3 w-fit rounded-full bg-gold px-3 py-1 text-xs font-bold text-primary">{t("Хит", "Popular")}</span>}
-            <h2 className="text-2xl font-semibold">{t(...pl.t)}</h2>
-            <p className="mt-5"><span className="font-display text-5xl">{pl.p}</span> <span className="opacity-70">{t(...pl.per)}</span></p>
+            <h2 className="text-2xl font-semibold">{t(pl.t)}</h2>
+            <p className="mt-5"><span className="font-display text-5xl">{pl.p}</span> <span className="opacity-70">{t(pl.per)}</span></p>
             <ul className="mt-6 flex-1 space-y-3">
-              {pl.f.map((x) => <li key={x[0]} className="flex gap-2"><Check size={18} className="mt-0.5 shrink-0 text-accent" />{t(...x)}</li>)}
+              {pl.f.map((x) => <li key={x[0]} className="flex gap-2"><Check size={18} className="mt-0.5 shrink-0 text-accent" />{t(x)}</li>)}
             </ul>
             <Link to="/contacts" className="btn-accent mt-8">{t("Записаться", "Sign up")}</Link>
           </div>
@@ -46,7 +46,7 @@ function Prices() {
         <table className="mt-6 w-full min-w-[480px] text-left">
           <tbody>
             {special.map(([n, p]) => (
-              <tr key={n[0]} className="border-b"><td className="py-4 font-semibold">{t(...n)}</td><td className="py-4 text-right">{t(...p)}</td></tr>
+              <tr key={n[0]} className="border-b"><td className="py-4 font-semibold">{t(n)}</td><td className="py-4 text-right">{t(p)}</td></tr>
             ))}
           </tbody>
         </table>
