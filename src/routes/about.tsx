@@ -23,7 +23,7 @@ function About() {
         {stats.map(([n, l]) => (
           <div key={n} className="rounded-2xl bg-secondary p-7">
             <p className="font-display text-5xl text-accent">{n}</p>
-            <p className="mt-2 text-muted-foreground">{t(...l)}</p>
+            <p className="mt-2 text-muted-foreground">{t(l)}</p>
           </div>
         ))}
       </section>
@@ -40,8 +40,8 @@ function About() {
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {values.map(([ti, d]) => (
             <div key={ti[0]} className="rounded-2xl border bg-card p-7">
-              <h3 className="text-2xl font-semibold">{t(...ti)}</h3>
-              <p className="mt-3 text-muted-foreground">{t(...d)}</p>
+              <h3 className="text-2xl font-semibold">{t(ti)}</h3>
+              <p className="mt-3 text-muted-foreground">{t(d)}</p>
             </div>
           ))}
         </div>

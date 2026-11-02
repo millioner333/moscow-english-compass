@@ -24,15 +24,15 @@ function Teachers() {
       <PageHero eyebrow={t("Преподаватели", "Teachers")} title={t("Команда, которая влюбляет в язык", "A team that makes you love English")} text={t("Только 1 из 12 кандидатов проходит наш отбор. Все преподаватели имеют международные сертификаты и регулярно повышают квалификацию.", "Only 1 in 12 candidates passes our selection. All teachers hold international certificates and keep improving their skills.")} />
       <section className="container-x grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {team.map(([n, r, d], i) => {
-          const name = t(...n);
+          const name = t(n);
           return (
             <div key={n[0]} className="rounded-2xl border bg-card p-7">
               <div className={`grid h-20 w-20 place-items-center rounded-full font-display text-2xl ${i % 2 ? "bg-accent text-accent-foreground" : "bg-primary text-primary-foreground"}`}>
                 {name.split(" ").map((w) => w[0]).join("")}
               </div>
               <h2 className="mt-5 text-2xl font-semibold">{name}</h2>
-              <p className="font-semibold text-accent">{t(...r)}</p>
-              <p className="mt-2 text-sm text-muted-foreground">{t(...d)}</p>
+              <p className="font-semibold text-accent">{t(r)}</p>
+              <p className="mt-2 text-sm text-muted-foreground">{t(d)}</p>
             </div>
           );
         })}

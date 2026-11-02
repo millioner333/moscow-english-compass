@@ -25,13 +25,13 @@ function Courses() {
         {courses.map((c) => (
           <article key={c.t[0]} className="flex flex-col rounded-2xl border bg-card p-8 transition hover:shadow-card">
             <div className="flex flex-wrap gap-2 text-xs font-bold">
-              <span className="rounded-full bg-accent/10 px-3 py-1 text-accent">{t(...c.lvl)}</span>
-              <span className="rounded-full bg-secondary px-3 py-1">{t(...c.who)}</span>
+              <span className="rounded-full bg-accent/10 px-3 py-1 text-accent">{t(c.lvl)}</span>
+              <span className="rounded-full bg-secondary px-3 py-1">{t(c.who)}</span>
             </div>
-            <h2 className="mt-5 text-3xl font-semibold">{t(...c.t)}</h2>
-            <p className="mt-3 flex-1 text-muted-foreground">{t(...c.d)}</p>
+            <h2 className="mt-5 text-3xl font-semibold">{t(c.t)}</h2>
+            <p className="mt-3 flex-1 text-muted-foreground">{t(c.d)}</p>
             <div className="mt-6 flex items-center justify-between border-t pt-5 text-sm">
-              <span className="text-muted-foreground">{t(...c.dur)}</span>
+              <span className="text-muted-foreground">{t(c.dur)}</span>
               <Link to="/prices" className="font-semibold text-accent">{t("Цены →", "Prices →")}</Link>
             </div>
           </article>

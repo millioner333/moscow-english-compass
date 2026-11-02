@@ -24,12 +24,12 @@ function Careers() {
         {jobs.map(([ti, s, d]) => (
           <div key={ti[0]} className="flex flex-col justify-between gap-4 rounded-2xl border bg-card p-7 md:flex-row md:items-center">
             <div>
-              <h2 className="text-2xl font-semibold">{t(...ti)}</h2>
-              <p className="mt-2 text-muted-foreground">{t(...d)}</p>
+              <h2 className="text-2xl font-semibold">{t(ti)}</h2>
+              <p className="mt-2 text-muted-foreground">{t(d)}</p>
             </div>
             <div className="flex shrink-0 items-center gap-5">
-              <span className="font-bold">{t(...s)}</span>
-              <a href={`mailto:hr@bridge-english.ru?subject=${encodeURIComponent(t(...ti))}`} className="btn-accent !py-2.5">{t("Откликнуться", "Apply")}</a>
+              <span className="font-bold">{t(s)}</span>
+              <a href={`mailto:hr@bridge-english.ru?subject=${encodeURIComponent(t(ti))}`} className="btn-accent !py-2.5">{t("Откликнуться", "Apply")}</a>
             </div>
           </div>
         ))}

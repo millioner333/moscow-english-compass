@@ -68,8 +68,8 @@ function Index() {
         {features.map((f) => (
           <div key={f.t[0]} className="rounded-2xl border bg-card p-6">
             <f.icon className="text-accent" />
-            <h3 className="mt-4 text-xl font-semibold">{t(...f.t)}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{t(...f.d)}</p>
+            <h3 className="mt-4 text-xl font-semibold">{t(f.t)}</h3>
+            <p className="mt-2 text-sm text-muted-foreground">{t(f.d)}</p>
           </div>
         ))}
       </section>
@@ -83,8 +83,8 @@ function Index() {
           {programs.map(([name, d, p], i) => (
             <div key={name} className={`rounded-2xl p-8 ${i === 1 ? "bg-primary text-primary-foreground" : "bg-secondary"}`}>
               <h3 className="text-2xl font-semibold">{name}</h3>
-              <p className="mt-3 opacity-80">{t(...d)}</p>
-              <p className="mt-8 font-bold">{t(...p)}</p>
+              <p className="mt-3 opacity-80">{t(d)}</p>
+              <p className="mt-8 font-bold">{t(p)}</p>
             </div>
           ))}
         </div>
@@ -97,7 +97,7 @@ function Index() {
             {steps.map((s, i) => (
               <li key={s[0]} className="flex gap-4">
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-accent font-bold text-accent-foreground">{i + 1}</span>
-                <p className="pt-2 text-lg">{t(...s)}</p>
+                <p className="pt-2 text-lg">{t(s)}</p>
               </li>
             ))}
           </ol>
@@ -110,8 +110,8 @@ function Index() {
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {reviews.map(([n, txt]) => (
             <figure key={n[0]} className="rounded-2xl border bg-card p-7">
-              <blockquote className="font-display text-lg leading-relaxed">«{t(...txt)}»</blockquote>
-              <figcaption className="mt-5 text-sm font-semibold text-muted-foreground">{t(...n)}</figcaption>
+              <blockquote className="font-display text-lg leading-relaxed">«{t(txt)}»</blockquote>
+              <figcaption className="mt-5 text-sm font-semibold text-muted-foreground">{t(n)}</figcaption>
             </figure>
           ))}
         </div>
