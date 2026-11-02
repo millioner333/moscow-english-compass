@@ -8,11 +8,13 @@ export const Route = createFileRoute("/prices")({
   component: Prices,
 });
 
+const YOOMONEY_WALLET = "4100119665803159";
+
 type P = readonly [string, string];
-const plans: { t: P; p: string; per: P; hot?: boolean; f: P[] }[] = [
-  { t: ["Мини-группа", "Mini-group"], p: "5 900", per: ["₽ / месяц", "₽ / month"], f: [["8 занятий по 90 минут", "8 lessons of 90 minutes"], ["Группа до 6 человек", "Group of up to 6"], ["Учебные материалы включены", "Materials included"], ["Разговорный клуб 1 раз в месяц", "Speaking club once a month"]] },
-  { t: ["Интенсив", "Intensive"], p: "9 900", per: ["₽ / месяц", "₽ / month"], hot: true, f: [["12 занятий по 90 минут", "12 lessons of 90 minutes"], ["Группа до 4 человек", "Group of up to 4"], ["Еженедельный клуб с носителем", "Weekly club with a native speaker"], ["Личный куратор и отчёты", "Personal tutor and reports"]] },
-  { t: ["Индивидуально", "Private"], p: "2 500", per: ["₽ / урок", "₽ / lesson"], f: [["Занятия 60 минут", "60-minute lessons"], ["Программа под вашу цель", "Program tailored to your goal"], ["Гибкое расписание", "Flexible schedule"], ["Очно или онлайн", "In person or online"]] },
+const plans: { t: P; p: string; sum: number; per: P; hot?: boolean; f: P[] }[] = [
+  { t: ["Мини-группа", "Mini-group"], p: "5 900", sum: 5900, per: ["₽ / месяц", "₽ / month"], f: [["8 занятий по 90 минут", "8 lessons of 90 minutes"], ["Группа до 6 человек", "Group of up to 6"], ["Учебные материалы включены", "Materials included"], ["Разговорный клуб 1 раз в месяц", "Speaking club once a month"]] },
+  { t: ["Интенсив", "Intensive"], p: "9 900", sum: 9900, per: ["₽ / месяц", "₽ / month"], hot: true, f: [["12 занятий по 90 минут", "12 lessons of 90 minutes"], ["Группа до 4 человек", "Group of up to 4"], ["Еженедельный клуб с носителем", "Weekly club with a native speaker"], ["Личный куратор и отчёты", "Personal tutor and reports"]] },
+  { t: ["Индивидуально", "Private"], p: "2 500", sum: 2500, per: ["₽ / урок", "₽ / lesson"], f: [["Занятия 60 минут", "60-minute lessons"], ["Программа под вашу цель", "Program tailored to your goal"], ["Гибкое расписание", "Flexible schedule"], ["Очно или онлайн", "In person or online"]] },
 ];
 
 const special: [P, P][] = [
@@ -37,7 +39,17 @@ function Prices() {
             <ul className="mt-6 flex-1 space-y-3">
               {pl.f.map((x) => <li key={x[0]} className="flex gap-2"><Check size={18} className="mt-0.5 shrink-0 text-accent" />{t(x)}</li>)}
             </ul>
-            <Link to="/contacts" className="btn-accent mt-8">{t("Записаться", "Sign up")}</Link>
+            <form method="POST" action="https://yoomoney.ru/quickpay/confirm" className="mt-8">
+              <input type="hidden" name="receiver" value={YOOMONEY_WALLET} />
+              <input type="hidden" name="quickpay-form" value="button" />
+              <input type="hidden" name="label" value={`bridge-${pl.t[1].toLowerCase()}`} />
+              <input type="hidden" name="targets" value={`Bridge English: ${pl.t[0]}`} />
+              <input type="hidden" name="sum" value={pl.sum} />
+              <input type="hidden" name="paymentType" value="AC" />
+              <input type="hidden" name="successURL" value="https://moscow-english-compass.lovable.app/contacts" />
+              <button className="btn-accent w-full">{t("Оплатить", "Pay")} {pl.p} ₽</button>
+            </form>
+            <Link to="/contacts" className="mt-3 text-center text-sm font-semibold opacity-80 hover:opacity-100">{t("Сначала пробный урок", "Try a free lesson first")}</Link>
           </div>
         ))}
       </section>
