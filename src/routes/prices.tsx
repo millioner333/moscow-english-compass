@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { CtaSection, PageHero, meta } from "@/components/site";
 import { useLang } from "@/lib/i18n";
-import { YOOMONEY_WALLET, PLAN_PRICES } from "@/lib/plans";
+import { YOOMONEY_WALLET, PLANS } from "@/lib/plans";
 
 export const Route = createFileRoute("/prices")({
   head: () => meta("Цены на курсы английского — Bridge English", "Стоимость групповых и индивидуальных занятий английским в Москве. Первый урок бесплатно."),
@@ -12,9 +12,9 @@ export const Route = createFileRoute("/prices")({
 
 type P = readonly [string, string];
 const plans: { t: P; p: string; sum: number; id: string; per: P; hot?: boolean; f: P[] }[] = [
-  { t: ["Мини-группа", "Mini-group"], p: "5 900", sum: PLAN_PRICES["mini-group"].sum, id: "mini-group", per: ["₽ / месяц", "₽ / month"], f: [["8 занятий по 90 минут", "8 lessons of 90 minutes"], ["Группа до 6 человек", "Group of up to 6"], ["Учебные материалы включены", "Materials included"], ["Разговорный клуб 1 раз в месяц", "Speaking club once a month"]] },
-  { t: ["Интенсив", "Intensive"], p: "9 900", sum: PLAN_PRICES.intensive.sum, id: "intensive", per: ["₽ / месяц", "₽ / month"], hot: true, f: [["12 занятий по 90 минут", "12 lessons of 90 minutes"], ["Группа до 4 человек", "Group of up to 4"], ["Еженедельный клуб с носителем", "Weekly club with a native speaker"], ["Личный куратор и отчёты", "Personal tutor and reports"]] },
-  { t: ["Индивидуально", "Private"], p: "2 500", sum: PLAN_PRICES.private.sum, id: "private", per: ["₽ / урок", "₽ / lesson"], f: [["Занятия 60 минут", "60-minute lessons"], ["Программа под вашу цель", "Program tailored to your goal"], ["Гибкое расписание", "Flexible schedule"], ["Очно или онлайн", "In person or online"]] },
+  { t: ["Мини-группа", "Mini-group"], p: "5 900", sum: PLANS["mini-group"].sum, id: "mini-group", per: ["₽ / месяц", "₽ / month"], f: [["8 занятий по 90 минут", "8 lessons of 90 minutes"], ["Группа до 6 человек", "Group of up to 6"], ["Учебные материалы включены", "Materials included"], ["Разговорный клуб 1 раз в месяц", "Speaking club once a month"]] },
+  { t: ["Интенсив", "Intensive"], p: "9 900", sum: PLANS.intensive.sum, id: "intensive", per: ["₽ / месяц", "₽ / month"], hot: true, f: [["12 занятий по 90 минут", "12 lessons of 90 minutes"], ["Группа до 4 человек", "Group of up to 4"], ["Еженедельный клуб с носителем", "Weekly club with a native speaker"], ["Личный куратор и отчёты", "Personal tutor and reports"]] },
+  { t: ["Индивидуально", "Private"], p: "2 500", sum: PLANS.private.sum, id: "private", per: ["₽ / урок", "₽ / lesson"], f: [["Занятия 60 минут", "60-minute lessons"], ["Программа под вашу цель", "Program tailored to your goal"], ["Гибкое расписание", "Flexible schedule"], ["Очно или онлайн", "In person or online"]] },
 ];
 
 const special: [P, P][] = [
