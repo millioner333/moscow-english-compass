@@ -3,6 +3,7 @@ import { PageHero, meta } from "@/components/site";
 import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/careers")({
+  staticData: { sitemap: true },
   head: () => meta("Вакансии — работа в Bridge English", "Вакансии преподавателей английского и администраторов в школе Bridge English, Москва."),
   component: Careers,
 });

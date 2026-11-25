@@ -3,6 +3,7 @@ import { CtaSection, PageHero, meta } from "@/components/site";
 import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/teachers")({
+  staticData: { sitemap: true },
   head: () => meta("Преподаватели — Bridge English", "Сертифицированные преподаватели CELTA/DELTA и носители языка в школе английского Bridge English."),
   component: Teachers,
 });

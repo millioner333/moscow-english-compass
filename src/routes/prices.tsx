@@ -5,6 +5,7 @@ import { useLang } from "@/lib/i18n";
 import { YOOMONEY_WALLET, PLANS } from "@/lib/plans";
 
 export const Route = createFileRoute("/prices")({
+  staticData: { sitemap: true },
   head: () => meta("Цены на курсы английского — Bridge English", "Стоимость групповых и индивидуальных занятий английским в Москве. Первый урок бесплатно."),
   component: Prices,
 });

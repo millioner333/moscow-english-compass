@@ -4,6 +4,7 @@ import { LeadForm, PageHero, meta } from "@/components/site";
 import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/contacts")({
+  staticData: { sitemap: true },
   head: () => meta("Контакты — Bridge English, Москва", "Адрес, телефон и график работы школы английского Bridge English. Запишитесь на бесплатный пробный урок."),
   component: Contacts,
 });

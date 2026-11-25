@@ -4,6 +4,7 @@ import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/admin")({
+  staticData: { sitemap: "exclude-subtree" },
   ssr: false,
   head: () => ({
     meta: [

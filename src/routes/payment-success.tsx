@@ -3,7 +3,11 @@ import { meta } from "@/components/site";
 import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/payment-success")({
-  head: () => meta("Оплата принята — Bridge English", "Спасибо за оплату курса в школе английского Bridge English."),
+  staticData: { sitemap: false },
+  head: () => {
+    const metadata = meta("Оплата принята — Bridge English", "Спасибо за оплату курса в школе английского Bridge English.");
+    return { ...metadata, meta: [...metadata.meta, { name: "robots", content: "noindex" }] };
+  },
   component: Success,
 });
 

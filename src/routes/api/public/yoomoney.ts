@@ -9,6 +9,7 @@ async function sha1Hex(s: string) {
 }
 
 export const Route = createFileRoute("/api/public/yoomoney")({
+  staticData: { sitemap: false },
   server: {
     handlers: {
       POST: async ({ request }) => {

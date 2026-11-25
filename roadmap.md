@@ -1,4 +1,5 @@
 # Roadmap
+- [x] Create and verify router-derived sitemap for all public pages
 - [x] RU/EN language switcher across all pages
 - [x] One-time payment via YooMoney (pay buttons on prices)
 - [ ] Automatic YooMoney payment confirmation (waiting: ЮMoney notification secret from user)

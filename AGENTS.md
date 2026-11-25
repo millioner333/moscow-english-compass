@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Generate `/sitemap.xml` from explicit required `staticData.sitemap` route decisions; this keeps public URLs in sync while excluding private and service pages. Omit lastmod unless a page-specific authoritative content timestamp exists.

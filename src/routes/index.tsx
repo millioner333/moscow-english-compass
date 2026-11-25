@@ -5,6 +5,7 @@ import { CtaSection, LeadForm, meta } from "@/components/site";
 import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => meta("Bridge English — курсы английского языка в Москве", "Курсы английского для взрослых и детей в центре Москвы. Мини-группы до 6 человек, носители языка, бесплатный пробный урок."),
   component: Index,
 });
